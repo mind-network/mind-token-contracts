@@ -71,8 +71,4 @@ contract Airdrop is IGeneralError, AccessControl {
     function withdrawERC20(IERC20 tokenToWithdraw, address receiver, uint256 amount) external onlyRole(ADMIN_ROLE) {
         tokenToWithdraw.transfer(receiver, amount);
     }
-
-    function withdrawNative(address payable receiver, uint256 amount) external onlyRole(ADMIN_ROLE) {
-        receiver.transfer(amount);
-    }
 }
