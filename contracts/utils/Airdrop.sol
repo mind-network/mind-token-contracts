@@ -35,6 +35,9 @@ contract Airdrop is IGeneralError, AccessControl {
         uint256[] calldata amounts,
         bytes32[][] calldata proofs
     ) external onlyRole(BATCH_ROLE) {
+        if (users.length != amounts.length || users.length != proofs.length) {
+            revert GeneralError(CONTRACT_ID, 400);
+        }
         for (uint256 i; i < users.length; i++) {
             _claim(users[i], amounts[i], proofs[i]);
         }
